@@ -1,0 +1,13 @@
+<div class="login-container">
+  <h2>Login</h2>
+  <form (ngSubmit)="onLogin()" #loginForm="ngForm">
+    
+    <label>Phone Number:</label>
+    <input type="tel" name="phone" ngModel required />
+
+    <label>Password:</label>
+    <input type="password" name="password" ngModel required />
+
+    <button type="submit">Login</button>
+  </form>
+</div>

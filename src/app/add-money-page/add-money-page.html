@@ -1,0 +1,10 @@
+<div class="add-money-container">
+  <h2>Add Money</h2>
+  <form (ngSubmit)="onAddMoney()" #addMoneyForm="ngForm">
+    
+    <label>Amount:</label>
+    <input type="number" name="amount" ngModel required min="1" />
+
+    <button type="submit">Add</button>
+  </form>
+</div>

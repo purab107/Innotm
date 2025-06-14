@@ -1,0 +1,35 @@
+.payment-container {
+  max-width: 350px;
+  margin: auto;
+  padding: 20px;
+  border-radius: 10px;
+  background: #fff3e0;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.payment-container label {
+  display: block;
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+.payment-container input[type="tel"],
+.payment-container input[type="number"] {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+}
+
+.payment-container button {
+  margin-top: 20px;
+  width: 100%;
+  padding: 10px;
+  background: #ff9800;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.payment-container button:hover {
+  background: #fb8c00;
+}

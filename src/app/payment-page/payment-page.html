@@ -1,0 +1,13 @@
+<div class="payment-container">
+  <h2>Send Money</h2>
+  <form (ngSubmit)="onSendMoney()" #paymentForm="ngForm">
+    
+    <label>Receiver Phone Number:</label>
+    <input type="tel" name="receiverPhone" ngModel required />
+
+    <label>Amount:</label>
+    <input type="number" name="amount" ngModel required min="1" />
+
+    <button type="submit">Send</button>
+  </form>
+</div>

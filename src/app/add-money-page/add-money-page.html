@@ -1,9 +1,14 @@
 <div class="add-money-container">
   <h2>Add Money</h2>
-  <form (ngSubmit)="onAddMoney()" #addMoneyForm="ngForm">
+  <form (ngSubmit)="addMoneyForm.form.valid && onAddMoney(addMoneyModel)" #addMoneyForm="ngForm">
+
+    <!-- <div class="mb-3">
+          <input type="text" class="form-control" placeholder="Enter phone number"
+                 name="phone" required [(ngModel)]="addMoneyModel.phoneNumber" />
+        </div> -->
     
     <label>Amount:</label>
-    <input type="number" name="amount" ngModel required min="1" />
+    <input type="number" name="amount" [(ngModel)]="addMoneyModel.amount" required min="1" />
 
     <button type="submit">Add</button>
   </form>

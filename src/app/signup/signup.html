@@ -1,78 +1,77 @@
-<div class="signup-container">
-  <!-- Logo at the top -->
-  <div class="logo">
-    <img src="images/logo.png" alt="Logo" class="logo-img"/>
-  </div>
+<!-- SIGN-UP FORM -->
+<form #signupForm="ngForm" (ngSubmit)="signupForm.form.valid && onSubmit(signUpModel)" class="container-fluid signup-container">
+  <div class="row h-100">
 
-  <h2>Sign Up</h2>
+    <!-- Left Panel -->
+    <div class="col-md-6 left-panel" style="padding-top: 20px;">
+      <div class="row mb-3">
+        <img src="favicon.ico" alt="Logo" style="width: 100px;">
+      </div>
 
-  <form #signupForm="ngForm" name="form" (ngSubmit)="signupForm.form.valid && onSubmit()" class="sign-form forml" novalidate>
-    
-    <!-- <div class="form-group">
-      <label>First Name</label>
-      <input type="text" name="firstName" class="form-control"
-        [(ngModel)]="signupModel.FirstName"
-        #firstName="ngModel" required
-        [ngClass]="{ 'is-invalid': signupForm.submitted && firstName.invalid }" />
-    </div>
+      <div class="row">
+        <h2 class="mb-3 fw-bold">Create Your Account</h2>
+        <p class="mb-4">Join us and start your journey today</p>
 
-    <div class="form-group">
-      <label>Last Name</label>
-      <input type="text" name="lastName" class="form-control"
-        [(ngModel)]="signupModel.LastName"
-        #lastName="ngModel" required
-        [ngClass]="{ 'is-invalid': signupForm.submitted && lastName.invalid }" />
-    </div> -->
+        <!-- Email -->
+        <div class="mb-3">
+          <input type="email" class="form-control" placeholder="Enter email"
+                 name="email" required [(ngModel)]="signUpModel.email" />
+        </div>
 
-    <div class="form-group">
-      <label>Email</label>
-      <input type="email" name="email" class="form-control"
-        [(ngModel)]="signupModel.Email"
-        #email="ngModel" required
-        [ngClass]="{ 'is-invalid': signupForm.submitted && email.invalid }" />
-    </div>
+        <!-- Phone Number -->
+        <div class="mb-3">
+          <input type="text" class="form-control" placeholder="Enter phone number"
+                 name="phone" required [(ngModel)]="signUpModel.phoneNumber" />
+        </div>
 
-    <div class="form-group">
-      <label>Phone Number</label>
-      <input type="tel" name="phone" class="form-control"
-        [(ngModel)]="signupModel.Phone"
-        #phone="ngModel" required
-        [ngClass]="{ 'is-invalid': signupForm.submitted && phone.invalid }" />
-    </div>
+        <!-- Username -->
+        <div class="mb-3">
+          <input type="text" class="form-control" placeholder="Enter username"
+                 name="username" required [(ngModel)]="signUpModel.username" />
+        </div>
 
-    <div class="form-group">
-      <label>Gender</label>
-      <div class="gender-selector">
-        <label>
-          <input type="radio" name="gender" value="male" [(ngModel)]="signupModel.Gender" required />
-          Male
-        </label>
-        <label>
-          <input type="radio" name="gender" value="female" [(ngModel)]="signupModel.Gender" />
-          Female
-        </label>
+        <!-- Password -->
+        <div class="mb-3">
+          <input type="password" class="form-control" placeholder="Enter password"
+                 name="password" required [(ngModel)]="signUpModel.password" />
+        </div>
+
+        <!-- Gender -->
+        <div class="mb-3">
+          <label class="me-3">Gender:</label>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="gender" value="male"
+                   [(ngModel)]="signUpModel.gender" required />
+            <label class="form-check-label">Male</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="gender" value="female"
+                   [(ngModel)]="signUpModel.gender" />
+            <label class="form-check-label">Female</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="gender" value="other"
+                   [(ngModel)]="signUpModel.gender" />
+            <label class="form-check-label">Other</label>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="d-grid mb-3">
+          <button type="submit" class="btn btn-primary">Sign Up</button>
+        </div>
+
+        <p class="text-muted">Already have an account? <a href="#" class="link-style">Sign In</a></p>
       </div>
     </div>
 
-    <div class="form-group">
-      <label>Username</label>
-      <input type="text" name="username" class="form-control"
-        [(ngModel)]="signupModel.Username"
-        #username="ngModel" required
-        [ngClass]="{ 'is-invalid': signupForm.submitted && username.invalid }" />
+    <!-- Right Panel -->
+    <div class="col-md-6 right-panel">
+      <img
+        src="https://cdn.dribbble.com/userupload/4109294/file/original-9e97c370c54d5611424f76c1a4201a40.png?compress=1&resize=1024x768"
+        alt="Sign Up Illustration"
+        class="img-fluid"
+      />
     </div>
-
-    <div class="form-group">
-      <label>Password</label>
-      <input type="password" name="password" class="form-control"
-        [(ngModel)]="signupModel.Password"
-        #password="ngModel" required
-        [ngClass]="{ 'is-invalid': signupForm.submitted && password.invalid }" />
-    </div>
-
-    <div class="form-group">
-      <button type="submit" class="btn btn-primary">Register</button>
-    </div>
-
-  </form>
-</div>
+  </div>
+</form>

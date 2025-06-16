@@ -1,35 +1,56 @@
-.login-container {
-  max-width: 400px;
-  margin: auto;
-  padding: 20px;
-  border-radius: 10px;
-  background: #f9f9f9;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background-color: #f2f2f2;
 }
 
-.login-container label {
-  display: block;
-  margin-top: 15px;
-  font-weight: bold;
+.signup-container {
+  height: 100vh;
+  overflow-x: hidden;
 }
 
-.login-container input[type="tel"],
-.login-container input[type="password"] {
-  width: 100%;
-  padding: 8px;
-  margin-top: 5px;
+.left-panel {
+  background-color: #ffffff;
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.login-container button {
-  margin-top: 20px;
-  width: 100%;
-  padding: 10px;
-  background: #4caf50;
+.right-panel {
+  background: linear-gradient(135deg, #0118D8, #3174f2);
   color: white;
-  border: none;
-  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
 }
 
-.login-container button:hover {
-  background: #3e8e41;
+.right-panel img {
+  max-width: 100%;
+  height: auto;
+}
+
+.form-check-label {
+  margin-left: 5px;
+}
+
+.form-control {
+  border-radius: 10px;
+}
+
+.btn-primary {
+  background-color: #0059ff;
+  border: none;
+  border-radius: 10px;
+}
+
+.btn-primary:hover {
+  background-color: #2463ea;
+}
+
+.link-style {
+  color: #3174f2;
+  text-decoration: none;
 }

@@ -1,0 +1,16 @@
+.sidebar {
+      height: 100vh;
+      background-color: blue;
+      color: white;
+      padding: 20px;
+    }
+    .sidebar a {
+      color: white;
+      display: block;
+      margin: 15px 0;
+      text-decoration: none;
+    }
+    .card-box {
+      border-radius: 12px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }

@@ -36,6 +36,10 @@ export class MyService {
     return this.http.get<any>('https://skytm-api.azurewebsites.net/api/Users/basic-list')
   }
 
+  getUsername(phoneNumber: string): Observable<{result: balanceCheckModel}>{
+    return this.http.get<{result: balanceCheckModel}>(`https://skytm-api.azurewebsites.net/api/Users/balance?phoneNumber=${phoneNumber}`);
+  }
+
 }
 
 

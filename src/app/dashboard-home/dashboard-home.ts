@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { balanceCheckModel, MyService, transactionHistory } from '../my-service';
+import { MyService, transactionHistory } from '../my-service';
 
 @Component({
   selector: 'app-dashboard-home',

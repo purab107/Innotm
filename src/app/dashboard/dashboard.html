@@ -7,7 +7,7 @@
       <a class="nav-link" [routerLink]="['./']" routerLinkActive="active"><i class="fas fa-home " style="margin-right: 10px;"></i>  Home</a>
       <a class="nav-link" routerLink="add-money" routerLinkActive="active"><i class="fas fa-wallet " style="margin-right: 10px;"></i>  Add Money</a>
       <a class="nav-link" routerLink="send-money" routerLinkActive="active"><i class="fas fa-paper-plane " style="margin-right: 10px;"></i>  Send Money</a>
-      <a href="#"><i class="fas fa-list-ul " style="margin-right: 10px;"></i>  Transactions</a>
+      <a class="nav-link" routerLink="transaction-page" routerLinkActive="active"><i class="fas fa-list-ul " style="margin-right: 10px;"></i>  Transactions</a>
       <hr>
       <a href="#"><i class="fas fa-cog " style="margin-right: 10px;"></i>  Settings</a>
       <a href="#"><i class="fas fa-question-circle " style="margin-right: 10px;"></i>  Help</a>
@@ -18,7 +18,7 @@
     <div class="col-md-10 bg-light">
       <!-- Navbar -->
       <div class="d-flex justify-content-between align-items-center p-3 border-bottom bg-white">
-        <h5>Good morning, Name</h5>
+        <h5>Good morning, {{username}}</h5>
         <div>
           <button>Innotm</button>
           <button>Innotm</button>

@@ -20,16 +20,15 @@ export class LoginPage {
   
     onSubmit(form: LoginModel) {
       console.log("submit button pressed");
+      sessionStorage.setItem('number', this.loginModel.phoneNumber);
       this.Service.loginDetail(form).subscribe(data=>{
         this.Data = data.result
         alert(data.response);
-        // if(data.response=='Login Successfully !!'){
-        //   this.send(true);
-        //   sessionStorage.setItem("isloggedin","true");
-        //   sessionStorage.setItem("number", this.Data.phoneNumber);
-        //   this.router.navigate(['/dashboard'])
-        // }
-         this.router.navigate(['/dashboard']);
+      //  if(data.response=='Login Successfully !!'){
+      //     this.router.navigate(['/dashboard']);
+      //  }
+       this.router.navigate(['/dashboard']);
+         
       });
     }
 

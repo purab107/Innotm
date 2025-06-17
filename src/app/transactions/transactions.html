@@ -1,0 +1,33 @@
+<!-- Table Heading -->
+<div class="table-header d-flex justify-content-left mb-1 mt-3">
+  <h5>Recent Transactions</h5>
+</div>
+
+<!-- Table Container -->
+<div class="p-4" style="height: 70%;">
+  <div style="max-height: 550px; overflow-y: auto;">
+    <table class="table bg-white card-box table-fixed-header">
+      <thead class="bg-light">
+        <tr>
+          <th style="position: sticky; top: 0; background: white; z-index: 1;">Transaction</th>
+          <th style="position: sticky; top: 0; background: white; z-index: 1;">Amount</th>
+          <th style="position: sticky; top: 0; background: white; z-index: 1;">Status</th>
+          <th style="position: sticky; top: 0; background: white; z-index: 1;">Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let transaction of transactions">
+          <td>
+            {{ transaction.transactionType === 'Credit' ? 'Payment from' : 'Payment to' }}
+            {{ transaction.receiverName }} ({{transaction.receiverPhoneNumber}})
+          </td>
+          <td>${{ transaction.transferAmount }} INR</td>
+          <td>
+            <span>{{transaction.transactionType}}</span>
+          </td>
+          <td>{{ transaction.transactionDate | date: 'MMM d, y, h, m' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

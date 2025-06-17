@@ -6,6 +6,7 @@ import { Dashboard } from './dashboard/dashboard';
 import { AddMoneyPage } from './add-money-page/add-money-page';
 import { PaymentPage } from './payment-page/payment-page';
 import { DashboardHome } from './dashboard-home/dashboard-home';
+import { Transactions } from './transactions/transactions';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'signup', pathMatch: 'full' },
@@ -19,7 +20,8 @@ export const routes: Routes = [
     children: [
       { path: '', component: DashboardHome },
       { path: 'add-money', component: AddMoneyPage },
-      { path: 'send-money', component: PaymentPage }
+      { path: 'send-money', component: PaymentPage },
+      { path: 'transaction-page', component: Transactions }
     ]
   }
 ];

@@ -2,51 +2,35 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
+import { MyService, balanceCheckModel } from '../my-service';
 
 @Component({
   selector: 'app-dashboard',
   imports: [FormsModule, CommonModule, RouterLink, RouterOutlet],
+  providers: [MyService],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css'
 })
 export class Dashboard {
 
-  
-
-  constructor (private router: Router){}
+  constructor(private router: Router, private service: MyService) { }
 
   userPhoneNumber: any;
-  ngOnInit():void{
+  username: string = '';
+  ngOnInit(): void {
     this.userPhoneNumber = sessionStorage.getItem("number");
+    //const phone = sessionStorage.getItem('number');
+    this.service.getUsername(this.userPhoneNumber).subscribe((res: { result: balanceCheckModel }) => {
+      this.username = res.result.username;
+      this.showConsole();
+    });
+
   }
 
-  transactions = [
-  {
-    transactionId: 0,
-    userId: 0,
-    receiverId: 0,
-    receiverName: 'Molly Sanders',
-    receiverPhoneNumber: '9876543210',
-    transactionType: 'Credit',
-    transactionDate: '2025-06-16T19:06:20.155Z',
-    initialAmount: 0,
-    transferAmount: 20000,
-  },
-  {
-    transactionId: 1,
-    userId: 0,
-    receiverId: 1,
-    receiverName: 'Doug Mann',
-    receiverPhoneNumber: '9876543211',
-    transactionType: 'Debit',
-    transactionDate: '2025-06-10T14:30:00.000Z',
-    initialAmount: 0,
-    transferAmount: 14200,
+  showConsole() {
+    console.log("user name is : ", this.username)
   }
-];
 
 
-  addMoney(){
-    
-  }
+
 }

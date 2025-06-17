@@ -1,5 +1,6 @@
 <!-- SIGN-UP FORM -->
-<form #signupForm="ngForm" (ngSubmit)="signupForm.form.valid && onSubmit(signUpModel)" class="container-fluid signup-container">
+<form #signupForm="ngForm" (ngSubmit)="signupForm.form.valid && onSubmit(signUpModel)"
+  class="container-fluid signup-container">
   <div class="row h-100">
 
     <!-- Left Panel -->
@@ -14,44 +15,43 @@
 
         <!-- Email -->
         <div class="mb-3">
-          <input type="email" class="form-control" placeholder="Enter email"
-                 name="email" required [(ngModel)]="signUpModel.email" />
+          <input type="email" class="form-control" placeholder="Enter email" name="email" required
+            [(ngModel)]="signUpModel.email" />
         </div>
 
         <!-- Phone Number -->
         <div class="mb-3">
-          <input type="text" class="form-control" placeholder="Enter phone number"
-                 name="phone" required [(ngModel)]="signUpModel.phoneNumber" />
+          <input type="text" class="form-control" placeholder="Enter phone number" name="phone" required
+            [(ngModel)]="signUpModel.phoneNumber" />
         </div>
 
         <!-- Username -->
         <div class="mb-3">
-          <input type="text" class="form-control" placeholder="Enter username"
-                 name="username" required [(ngModel)]="signUpModel.username" />
+          <input type="text" class="form-control" placeholder="Enter username" name="username" required
+            [(ngModel)]="signUpModel.username" />
         </div>
 
         <!-- Password -->
         <div class="mb-3">
-          <input type="password" class="form-control" placeholder="Enter password"
-                 name="password" required [(ngModel)]="signUpModel.password" />
+          <input type="password" class="form-control" placeholder="Enter password" name="password" required
+            [(ngModel)]="signUpModel.password" />
         </div>
 
         <!-- Gender -->
         <div class="mb-3">
           <label class="me-3">Gender:</label>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="gender" value="male"
-                   [(ngModel)]="signUpModel.gender" required />
+            <input class="form-check-input" type="radio" name="gender" value="male" [(ngModel)]="signUpModel.gender"
+              required />
             <label class="form-check-label">Male</label>
           </div>
           <div class="form-check form-check-inline">
             <input class="form-check-input" type="radio" name="gender" value="female"
-                   [(ngModel)]="signUpModel.gender" />
+              [(ngModel)]="signUpModel.gender" />
             <label class="form-check-label">Female</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="gender" value="other"
-                   [(ngModel)]="signUpModel.gender" />
+            <input class="form-check-input" type="radio" name="gender" value="other" [(ngModel)]="signUpModel.gender" />
             <label class="form-check-label">Other</label>
           </div>
         </div>
@@ -61,7 +61,11 @@
           <button type="submit" class="btn btn-primary">Sign Up</button>
         </div>
 
-        <p class="text-muted">Already have an account? <a href="#" class="link-style">Sign In</a></p>
+        <p class="text-muted">
+          Already have an account?
+          <a [routerLink]="['/login']" class="link-style">Sign In</a>
+        </p>
+
       </div>
     </div>
 
@@ -69,9 +73,7 @@
     <div class="col-md-6 right-panel">
       <img
         src="https://cdn.dribbble.com/userupload/4109294/file/original-9e97c370c54d5611424f76c1a4201a40.png?compress=1&resize=1024x768"
-        alt="Sign Up Illustration"
-        class="img-fluid"
-      />
+        alt="Sign Up Illustration" class="img-fluid" />
     </div>
   </div>
 </form>

@@ -14,4 +14,12 @@ import { Dashboard } from "./dashboard/dashboard";
 })
 export class App {
   protected title = 'Innotm';
+  // isloggedin=false;
+  // ngOnInit():void{
+  //   this.isloggedin = Boolean(sessionStorage.getItem('isloggedin'))
+  // }
+
+  // received(event:any){
+  //   this.isloggedin = event;
+  // }
 }

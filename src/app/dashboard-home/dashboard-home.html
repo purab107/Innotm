@@ -1,0 +1,75 @@
+<!-- Balance shoq Cards -->
+      <div class="row p-4 g-4">
+        <div class="col-md-4">
+          <div class="p-3 bg-white card-box">
+            <h6>Account Balance</h6>
+            <h4>INR {{currentBalance}}</h4>
+            <!-- <a href="#">View all</a> -->
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="p-3 bg-white card-box">
+            <h6>Pending</h6>
+            <h4 class="text-danger">- INR 19,369.45</h4>
+            <!-- <a href="#">View all</a> -->
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="p-3 bg-white card-box">
+            <h6>Processed (Last 30 Days)</h6>
+            <h4>INR 28,750.00</h4>
+            <!-- <a href="#">View all</a> -->
+          </div>
+        </div>
+      </div>
+
+<!-- Transaction Table Section -->
+<div class="p-4">
+  <div class="table-header d-flex justify-content-between mb-3">
+        <h5>Recent Transaction</h5>
+        <button class="btn transaction-button">View All Transactions</button>
+  </div>
+  <table class="table bg-white card-box">
+    <thead>
+      <tr>
+        <th>Transaction</th>
+        <th>Amount</th>
+        <th>Status</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let transaction of transactions | slice:0:9">
+        <td>
+          {{ transaction.transactionType === 'Credit' ? 'Payment from' : 'Payment to' }}
+          {{ transaction.receiverName }}
+        </td>
+        <td>${{ transaction.transferAmount }} INR</td>
+        <td>
+          <span>
+            {{transaction.transactionType}}
+          </span>
+          <!-- <span
+            class="badge"
+            [ngClass]="{
+              'bg-success': transaction.transferAmount > 0,
+              'bg-danger': transaction.transferAmount < 0,
+              'bg-warning text-dark': transaction.transferAmount === 0
+            }"
+          >
+            {{
+              transaction.transferAmount > 0
+                ? 'Success'
+                : transaction.transferAmount < 0
+                ? 'Failed'
+                : 'Processing'
+            }}
+          </span> -->
+        </td>
+        <td>{{ transaction.transactionDate | date: 'MMM d, y, h, m' }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>

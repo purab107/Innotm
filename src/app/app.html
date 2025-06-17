@@ -1,6 +1,17 @@
 <!-- <app-dashboard></app-dashboard> -->
-<app-signup></app-signup>
-<app-login-page></app-login-page>
-<app-add-money-page></app-add-money-page>
+<!-- <app-signup></app-signup> -->
+<!-- <app-login-page></app-login-page>
+<app-add-money-page></app-add-money-page> -->
 <!-- <app-payment-page></app-payment-page> -->
 <router-outlet></router-outlet>
+
+
+<!-- <app-login-page *ngIf="isloggedIin != true" (loginEvent)="received($event)"></app-login-page>
+<div class="row">
+    <div class="col-2">
+        <app-dashboard *ngIf="isloggedin == true" (loginEvent)="received($event)"></app-dashboard>
+    </div>
+    <div class="col-10">
+        <router-outlet *ngIf="isloggedin == true"></router-outlet>
+    </div>
+</div> -->

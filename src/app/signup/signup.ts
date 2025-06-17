@@ -2,11 +2,11 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MyService, SignUpModel } from '../my-service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterLink],
   providers: [MyService],
   templateUrl: './signup.html',
   styleUrl: './signup.css'
@@ -23,7 +23,7 @@ export class Signup {
       this.Data = data.result
       alert(data.response);
       sessionStorage.setItem("number", this.Data.phoneNumber);
-      this.router.navigate(["/login-page"])
+      this.router.navigate(["/app-login-page"])
     });
   }
 }

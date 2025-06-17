@@ -1,13 +1,23 @@
 <div class="payment-container">
   <h2>Send Money</h2>
-  <form (ngSubmit)="onSendMoney()" #paymentForm="ngForm">
+  <form (ngSubmit)="onSendMoney(payModel)" #paymentForm="ngForm">
     
     <label>Receiver Phone Number:</label>
-    <input type="tel" name="receiverPhone" ngModel required />
+    <input id="phone" type="text" name="receiverPhoneNumber" [(ngModel)]="payModel.receiverPhoneNumber" class="form-input" required />
 
     <label>Amount:</label>
-    <input type="number" name="amount" ngModel required min="1" />
+    <input id="amount" type="number" class="form-input" name="amount" [(ngModel)]="payModel.amount" required min="1" />
 
     <button type="submit">Send</button>
   </form>
+</div>
+
+<div>
+  <label for="users" class="select-label">Select User</label>
+  <select name="" id="users" [(ngModel)]="payModel.receiverPhoneNumber" class="custom-select">
+    <option value=" " disabled selected hidden>Select a User</option>
+    <option *ngFor="let data of userList" [value]="data.phoneNumber">
+      {{data.username}} | {{data.phoneNumber}}
+    </option>
+  </select>
 </div>

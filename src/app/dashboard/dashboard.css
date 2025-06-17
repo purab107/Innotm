@@ -1,16 +1,26 @@
 .sidebar {
-      height: 100vh;
-      background-color: blue;
-      color: white;
-      padding: 20px;
-    }
-    .sidebar a {
-      color: white;
-      display: block;
-      margin: 15px 0;
-      text-decoration: none;
-    }
-    .card-box {
-      border-radius: 12px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
+  height: 100vh;
+  position: static;
+  background: linear-gradient(135deg, #0118D8, #3174f2);
+  color: white;
+  padding: 20px;
+}
+
+.sidebar a{
+  display: block;
+  padding: 12px 10px;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.sidebar a:hover {
+  background-color: #1a2dd9;
+  color: #e0eaff;
+}
+
+.card-box {
+  border-radius: 12px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}

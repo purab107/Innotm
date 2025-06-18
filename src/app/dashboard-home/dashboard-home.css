@@ -14,3 +14,14 @@
   color: white;
   background: linear-gradient(135deg, #0118D8, #3174f2);
 }
+
+.balance-card {
+  background: linear-gradient(to right, #ffffff, #f9f9ff);
+  border-radius: 16px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.balance-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}

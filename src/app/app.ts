@@ -5,21 +5,23 @@ import { LoginPage } from "./login-page/login-page";
 import { AddMoneyPage } from "./add-money-page/add-money-page";
 import { PaymentPage } from "./payment-page/payment-page";
 import { Dashboard } from "./dashboard/dashboard";
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Signup, LoginPage, AddMoneyPage, PaymentPage, Dashboard],
+  imports: [RouterOutlet, Signup, LoginPage, AddMoneyPage, PaymentPage, Dashboard, CommonModule, FormsModule],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App {
   protected title = 'Innotm';
-  // isloggedin=false;
-  // ngOnInit():void{
-  //   this.isloggedin = Boolean(sessionStorage.getItem('isloggedin'))
-  // }
+  isloggedin = false;
+  ngOnInit(): void {
+    this.isloggedin = Boolean(sessionStorage.getItem('isloggedin'))
+  }
 
-  // received(event:any){
-  //   this.isloggedin = event;
-  // }
+  received(event: any) {
+    this.isloggedin = event;
+  }
 }

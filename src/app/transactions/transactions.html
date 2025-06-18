@@ -1,9 +1,8 @@
-<!-- Table Heading -->
-<div class="table-header d-flex justify-content-left mb-1 mt-3">
-  <h5>Recent Transactions</h5>
-</div>
+<!-- <div class="table-header d-flex justify-content-between mb-3">
+    <h5>Recent Transaction</h5>
+    <button class="btn transaction-button" (click)="deleteAll()">Delete All Transactions</button>
+  </div>
 
-<!-- Table Container -->
 <div class="p-4" style="height: 70%;">
   <div style="max-height: 550px; overflow-y: auto;">
     <table class="table bg-white card-box table-fixed-header">
@@ -26,8 +25,41 @@
             <span>{{transaction.transactionType}}</span>
           </td>
           <td>{{ transaction.transactionDate | date: 'MMM d, y, h, m' }}</td>
+          <td><button (click)="deleteByID(transaction.transactionId)">Delete</button></td>
         </tr>
       </tbody>
     </table>
   </div>
-</div>
+</div> -->
+
+
+<p-table
+    [value]="transactions"
+    [paginator]="true"
+    [rows]="5"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    [rowsPerPageOptions]="[5, 10, 20]"
+>
+    <ng-template #header>
+        <tr>
+          <th>Transaction</th>
+          <th>Amount</th>
+          <th>Status</th>
+          <th>Date</th>
+        </tr>
+    </ng-template>
+    <ng-template #body let-transaction>
+        <tr>
+            <td>
+            {{ transaction.transactionType === 'Credit' ? 'Payment from' : 'Payment to' }}
+            {{ transaction.receiverName }} ({{transaction.receiverPhoneNumber}})
+          </td>
+          <td>${{ transaction.transferAmount }} INR</td>
+          <td>
+            <span>{{transaction.transactionType}}</span>
+          </td>
+          <td>{{ transaction.transactionDate | date: 'MMM d, y, h, m' }}</td>
+          <td><button (click)="deleteByID(transaction.transactionId)">Delete</button></td>
+        </tr>
+    </ng-template>
+</p-table>

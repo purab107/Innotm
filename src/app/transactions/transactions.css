@@ -1,0 +1,10 @@
+.transaction-button{
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border: 1px solid #d80101;
+  transition: background 0.9s;
+}
+
+.transaction-button:hover{
+  color: white;
+  background: linear-gradient(135deg, #d80101, #f23131);
+}

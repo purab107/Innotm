@@ -19,12 +19,32 @@ userPhoneNumber: any;
   ngOnInit():void{
     this.userPhoneNumber = sessionStorage.getItem("number");
     this.balance();
+    this.updatePending();
     this.loadTransactions();
   }
 
+  transactions: transactionHistory[] = [];
   currentBalance: string = " ";
 
-  transactions: transactionHistory[] = [];
+  debitSum: number = 0;
+creditSum: number = 0;
+
+updatePending() {
+  this.creditSum = 0;
+  this.debitSum = 0;
+
+  for (let i = 0; i < this.transactions.length; i++) {
+    if (this.transactions[i].transactionType === 'Credit') {
+      this.creditSum += this.transactions[i].transferAmount;
+      console.log("credited:", this.creditSum);
+    }
+
+    if (this.transactions[i].transactionType === 'Debit') {
+      this.debitSum += this.transactions[i].transferAmount;
+      console.log("debited : ", this.debitSum);
+    }
+  }
+}
 
   loadTransactions(){
     this.service.getTransaction(this.userPhoneNumber).subscribe(data=>{
@@ -36,5 +56,6 @@ balance(){
   this.service.checkBalance(this.userPhoneNumber).subscribe(data=>{
     this.currentBalance = data.result.amount;
   });
+  this.updatePending();
 }
 }

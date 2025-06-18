@@ -9,9 +9,8 @@
       <a class="nav-link" routerLink="send-money" routerLinkActive="active"><i class="fas fa-paper-plane " style="margin-right: 10px;"></i>  Send Money</a>
       <a class="nav-link" routerLink="transaction-page" routerLinkActive="active"><i class="fas fa-list-ul " style="margin-right: 10px;"></i>  Transactions</a>
       <hr>
-      <a href="#"><i class="fas fa-cog " style="margin-right: 10px;"></i>  Settings</a>
+      <a class="nav-link" routerLink="transaction-page" routerLinkActive="active"><i class="fas fa-cog " style="margin-right: 10px;"></i>  Settings</a>
       <a href="#"><i class="fas fa-question-circle " style="margin-right: 10px;"></i>  Help</a>
-
     </div>
 
     <!-- Main content -->
@@ -19,10 +18,7 @@
       <!-- Navbar -->
       <div class="d-flex justify-content-between align-items-center p-3 border-bottom bg-white">
         <h5>Good morning, {{username}}</h5>
-        <div>
-          <button>Innotm</button>
-          <button>Innotm</button>
-        </div>
+        
       </div>
 
       <router-outlet></router-outlet>

@@ -16,14 +16,25 @@ export class Signup {
   signUpModel = new SignUpModel();
   Data: any;
 
-  constructor(private Service: MyService, private router: Router){}
+  constructor(private Service: MyService, private router: Router) { }
 
   onSubmit(form: SignUpModel) {
-    this.Service.signup(form).subscribe(data=>{
+    this.Service.signup(form).subscribe(data => {
       this.Data = data.result
       alert(data.response);
       sessionStorage.setItem("number", this.Data.phoneNumber);
-      this.router.navigate(["/app-login-page"])
+      // After user signs up
+      // localStorage.setItem('isLoggedIn', 'true');
+      // this.router.navigate(['/dashboard'], { replaceUrl: true });
+
     });
   }
+
+  // ngOnInit(): void {
+  //   const isLoggedIn = localStorage.getItem('isLoggedIn');
+  //   if (isLoggedIn && this.router.url === '/login') {
+  //     this.router.navigate(['/dashboard']);
+  //   }
+  // }
+
 }

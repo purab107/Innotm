@@ -23,14 +23,30 @@ export class Dashboard {
     this.service.getUsername(this.userPhoneNumber).subscribe((res: { result: balanceCheckModel }) => {
       this.username = res.result.username;
       this.showConsole();
+
     });
 
+    // const isLoggedIn = localStorage.getItem('isLoggedIn');
+    // if (!isLoggedIn && this.router.url === '/dashboard') {
+    //   this.router.navigate(['/login']);
+    // }
+
   }
+
+  //  logout(){
+  //   sessionStorage.removeItem('number');
+  //   sessionStorage.removeItem('isloggedin');
+  //   this.router.navigate(['/login']);
+  //   this.send(false);
+  // }
+
+  // send(val:any){
+  //   this.loginEvent.emit(val);
+  // }
 
   showConsole() {
     console.log("user name is : ", this.username)
   }
-
 
 
 }

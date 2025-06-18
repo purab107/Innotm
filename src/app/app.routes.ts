@@ -9,7 +9,7 @@ import { DashboardHome } from './dashboard-home/dashboard-home';
 import { Transactions } from './transactions/transactions';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'signup', pathMatch: 'full' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
 
   { path: 'signup', component: Signup },
   { path: 'login', component: LoginPage },

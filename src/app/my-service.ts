@@ -40,6 +40,14 @@ export class MyService {
     return this.http.get<{result: balanceCheckModel}>(`https://skytm-api.azurewebsites.net/api/Users/balance?phoneNumber=${phoneNumber}`);
   }
 
+  deleteAllTransactions(phoneNumber: string): Observable<any>{
+    return this.http.delete<any>(`https://skytm-api.azurewebsites.net/api/Transactions/history?phoneNumber=${phoneNumber}`)
+  }
+
+  deleteTransByID(transactionId: number):Observable<any>{
+    return this.http.delete<any>(`https://skytm-api.azurewebsites.net/api/Transactions/DeleteTransectionById?tid=${transactionId}`);
+  }
+
 }
 
 
@@ -100,3 +108,4 @@ export interface UserListResponse {
   username: string;
   phoneNumber: string;
 }
+

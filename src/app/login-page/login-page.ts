@@ -12,36 +12,49 @@ import { Router, RouterLink } from '@angular/router';
   styleUrl: './login-page.css'
 })
 export class LoginPage {
-    loginModel = new LoginModel();
-    Data: any;
-    
-  
-    constructor(private Service: MyService, private router: Router){}
-  
-    onSubmit(form: LoginModel) {
-      console.log("submit button pressed");
-      sessionStorage.setItem('number', this.loginModel.phoneNumber);
-      this.Service.loginDetail(form).subscribe(data=>{
-        this.Data = data.result
-        alert(data.response);
-      //  if(data.response=='Login Successfully !!'){
-      //     this.router.navigate(['/dashboard']);
-      //  }
-       this.router.navigate(['/dashboard']);
-         
-      });
+  loginModel = new LoginModel();
+  Data: any;
+
+
+  constructor(private Service: MyService, private router: Router) { }
+
+  @Output() loginEvent = new EventEmitter<string>();
+
+  send(val: any) {
+    this.loginEvent.emit(val);
+  }
+
+
+  onSubmit(form: LoginModel) {
+    this.Service.loginDetail(form).subscribe(data => {
+      this.Data = data.result
+      alert(data.response);
+      if(data.response == 'Login Successfully !!'){
+        this.send(true);
+        sessionStorage.setItem('isloggedin', "true");
+        sessionStorage.setItem("number",this.Data.phoneNumber);
+        this.router.navigate(['/dashboard']);
+      }
+      else{
+      this.send(false);
+      }
+    });
+  }
+
+  ngOnInit(): void {
+    if (Boolean(sessionStorage.getItem("isloggedin"))) {
+      this.router.navigate(['/dashboard'])
     }
+  }
 
-    // ngOnInit():void{
-    //   if(Boolean(sessionStorage.getItem("isloggedin"))){
-    //     this.router.navigate(['/dashboard'])
-    //   }
-    // }
-
-    // @Output() loginEvent = new EventEmitter<string>();
-
-    // send(val:any){
-    //   this.loginEvent.emit(val);
-    // }
-
+  // ngOnInit(): void {
+  //   const isLoggedIn = localStorage.getItem('isLoggedIn');
+  //   if (isLoggedIn && this.router.url === '/login') {
+  //     this.router.navigate(['/dashboard']);
+  //   }
+  // }
 }
+
+
+
+

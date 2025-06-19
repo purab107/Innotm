@@ -1,12 +1,14 @@
 .sidebar {
-  height: 100vh;
+  display: flex;               
+  flex-direction: column;         
+  height: 100vh;             
   position: static;
   background: linear-gradient(135deg, #0118D8, #3174f2);
   color: white;
   padding: 20px;
 }
 
-.sidebar a{
+.sidebar a {
   display: block;
   padding: 12px 10px;
   color: white;
@@ -23,4 +25,12 @@
 .card-box {
   border-radius: 12px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar .copyright {
+  margin-top: auto;             
+  text-align: center;
+  padding-top: 20px;
+  font-size: 10px;
+  color: #e0eaff;
 }

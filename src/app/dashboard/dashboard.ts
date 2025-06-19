@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { MyService, balanceCheckModel } from '../my-service';
@@ -14,6 +14,8 @@ import { MyService, balanceCheckModel } from '../my-service';
 export class Dashboard {
 
   constructor(private router: Router, private service: MyService) { }
+
+   @Output() loginEvent = new EventEmitter<string>();
 
   userPhoneNumber: any;
   username: string = '';
@@ -33,16 +35,16 @@ export class Dashboard {
 
   }
 
-  //  logout(){
-  //   sessionStorage.removeItem('number');
-  //   sessionStorage.removeItem('isloggedin');
-  //   this.router.navigate(['/login']);
-  //   this.send(false);
-  // }
+   logout(){
+     sessionStorage.removeItem('number');
+     sessionStorage.removeItem('isloggedin');
+     this.router.navigate(['/login']);
+    this.send(false);
+  }
 
-  // send(val:any){
-  //   this.loginEvent.emit(val);
-  // }
+  send(val:any){
+     this.loginEvent.emit(val);
+  }
 
   showConsole() {
     console.log("user name is : ", this.username)

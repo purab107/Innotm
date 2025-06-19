@@ -8,3 +8,64 @@
   color: white;
   background: linear-gradient(135deg, #d80101, #f23131);
 }
+
+.delete-id-btn{
+  border: none;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: red;
+  transition: transform 0.6s ease;
+}
+
+.delete-id-btn:hover {
+  transform: rotateZ(360deg) scale(1.1);
+}
+
+.transaction-table {
+  max-height: 550px;
+  overflow-y: auto;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  background-color: #fff;
+}
+
+/* Scrollable container needs to apply only to tbody */
+.transaction-table table {
+  width: auto;
+  border-collapse: collapse;
+  table-layout: fixed; /* Ensures alignment */
+}
+
+/* Sticky header */
+.transaction-table th {
+  position: sticky;
+  top: 0;
+  background-color: #ffffff;
+  z-index: 2;
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  font-weight: 600;
+}
+
+/* Table cells */
+.transaction-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #f0f0f0;
+  color: #444;
+}
+
+/* Hover effect */
+.transaction-table tbody tr:hover {
+  background-color: #f9f9f9;
+}
+
+/* Column borders */
+.transaction-table th,
+.transaction-table td {
+  border-right: 1px solid #e0e0e0;
+}
+
+.transaction-table th:last-child,
+.transaction-table td:last-child {
+  border-right: none;
+}

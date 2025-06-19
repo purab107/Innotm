@@ -2,7 +2,7 @@
   <div class="row">
     <!-- Sidebar -->
     <div class="col-md-2 sidebar">
-      <h4 class="mb-4">Innotm</h4>
+      <h4 class="mb-2">Innotm</h4>
       <hr>
       <a class="nav-link" [routerLink]="['./']" routerLinkActive="active"><i class="fas fa-home " style="margin-right: 10px;"></i>  Home</a>
       <a class="nav-link" routerLink="add-money" routerLinkActive="active"><i class="fas fa-wallet " style="margin-right: 10px;"></i>  Add Money</a>
@@ -11,6 +11,9 @@
       <hr>
       <a class="nav-link" routerLink="transaction-page" routerLinkActive="active"><i class="fas fa-cog " style="margin-right: 10px;"></i>  Settings</a>
       <a href="#"><i class="fas fa-question-circle " style="margin-right: 10px;"></i>  Help</a>
+      <div class="copyright d-flex justify-content-center align-items-center">
+        <p class="text-white fw-bold" style="font-size: 10px;">© Innotm 2025. All Rights Reserved.</p>
+      </div>
     </div>
 
     <!-- Main content -->
@@ -18,7 +21,7 @@
       <!-- Navbar -->
       <div class="d-flex justify-content-between align-items-center p-3 border-bottom bg-white">
         <h5>Good morning, {{username}}</h5>
-        
+        <button  class="btn btn-outline-danger" style="height: fit-content;" (click)="logout()">Log Out</button>
       </div>
 
       <router-outlet></router-outlet>

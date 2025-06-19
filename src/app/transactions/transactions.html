@@ -1,39 +1,54 @@
 <!-- <div class="table-header d-flex justify-content-between mb-3">
     <h5>Recent Transaction</h5>
     <button class="btn transaction-button" (click)="deleteAll()">Delete All Transactions</button>
-  </div>
+  </div> -->
 
 <div class="p-4" style="height: 70%;">
-  <div style="max-height: 550px; overflow-y: auto;">
-    <table class="table bg-white card-box table-fixed-header">
-      <thead class="bg-light">
-        <tr>
-          <th style="position: sticky; top: 0; background: white; z-index: 1;">Transaction</th>
-          <th style="position: sticky; top: 0; background: white; z-index: 1;">Amount</th>
-          <th style="position: sticky; top: 0; background: white; z-index: 1;">Status</th>
-          <th style="position: sticky; top: 0; background: white; z-index: 1;">Date</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let transaction of transactions">
-          <td>
-            {{ transaction.transactionType === 'Credit' ? 'Payment from' : 'Payment to' }}
-            {{ transaction.receiverName }} ({{transaction.receiverPhoneNumber}})
-          </td>
-          <td>${{ transaction.transferAmount }} INR</td>
-          <td>
-            <span>{{transaction.transactionType}}</span>
-          </td>
-          <td>{{ transaction.transactionDate | date: 'MMM d, y, h, m' }}</td>
-          <td><button (click)="deleteByID(transaction.transactionId)">Delete</button></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div> -->
+  <div class="transaction-table">
+  <table class="table bg-white card-box">
+    <thead>
+      <tr>
+        <th>Transaction</th>
+        <th>Amount</th>
+        <th>Status</th>
+        <th>Date</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let transaction of transactions">
+        <td>
+          {{ transaction.transactionType === 'Credit' ? 'Payment from' : 'Payment to' }}
+          {{ transaction.receiverName }} ({{ transaction.receiverPhoneNumber }})
+        </td>
+        <td
+          [ngClass]="{
+            'text-success': transaction.transactionType === 'Credit',
+            'text-danger': transaction.transactionType === 'Debit',
+            'text-primary': transaction.transactionType === 'Wallet'
+          }"
+        >
+          ₹{{ transaction.transferAmount }} INR
+        </td>
+        <td>
+          <span>{{ transaction.transactionType }}</span>
+        </td>
+        <td>{{ transaction.transactionDate | date: 'MMM d, y, h, m' }}</td>
+        <td>
+          <button (click)="deleteByID(transaction.transactionId)" class="delete-id-btn btn">
+            <i class="fas fa-trash" style="color: white;"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 
-<p-table
+</div>
+
+
+<!-- <p-table
     [value]="transactions"
     [paginator]="true"
     [rows]="5"
@@ -62,4 +77,4 @@
           <td><button (click)="deleteByID(transaction.transactionId)">Delete</button></td>
         </tr>
     </ng-template>
-</p-table>
+</p-table> -->

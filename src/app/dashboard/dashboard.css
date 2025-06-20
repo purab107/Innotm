@@ -6,6 +6,7 @@
   background: linear-gradient(135deg, #0118D8, #3174f2);
   color: white;
   padding: 20px;
+  padding-bottom: 0px;
 }
 
 .sidebar a {
@@ -33,4 +34,5 @@
   padding-top: 20px;
   font-size: 10px;
   color: #e0eaff;
+  
 }

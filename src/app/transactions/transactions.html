@@ -5,44 +5,43 @@
 
 <div class="p-4" style="height: 70%;">
   <div class="transaction-table">
-  <table class="table bg-white card-box">
-    <thead>
-      <tr>
-        <th>Transaction</th>
-        <th>Amount</th>
-        <th>Status</th>
-        <th>Date</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let transaction of transactions">
-        <td>
-          {{ transaction.transactionType === 'Credit' ? 'Payment from' : 'Payment to' }}
-          {{ transaction.receiverName }} ({{ transaction.receiverPhoneNumber }})
-        </td>
-        <td
-          [ngClass]="{
+    <table class="table bg-white card-box">
+      <thead>
+        <tr>
+          <th>Transaction</th>
+          <th>Amount</th>
+          <th>Status</th>
+          <th>Date</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let transaction of transactions">
+          <td>
+            
+            <p style="width: max-content;">{{ transaction.transactionType === 'Credit' ? 'Payment from' : 'Payment to' }} {{ transaction.receiverName }} ({{ transaction.receiverPhoneNumber }})
+            </p>
+          </td>
+          <td [ngClass]="{
             'text-success': transaction.transactionType === 'Credit',
             'text-danger': transaction.transactionType === 'Debit',
             'text-primary': transaction.transactionType === 'Wallet'
-          }"
-        >
-          ₹{{ transaction.transferAmount }} INR
-        </td>
-        <td>
-          <span>{{ transaction.transactionType }}</span>
-        </td>
-        <td>{{ transaction.transactionDate | date: 'MMM d, y, h, m' }}</td>
-        <td>
-          <button (click)="deleteByID(transaction.transactionId)" class="delete-id-btn btn">
-            <i class="fas fa-trash" style="color: white;"></i>
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+          }">
+            ₹{{ transaction.transferAmount }} INR
+          </td>
+          <td>
+            <span>{{ transaction.transactionType }}</span>
+          </td>
+          <td>{{ transaction.transactionDate | date: 'MMM d, y, h, m' }}</td>
+          <td>
+            <button (click)="deleteByID(transaction.transactionId)" class="delete-id-btn btn">
+              <i class="fas fa-trash" style="color: white;"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
 
 </div>

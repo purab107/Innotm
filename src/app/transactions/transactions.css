@@ -30,7 +30,7 @@
 
 /* Scrollable container needs to apply only to tbody */
 .transaction-table table {
-  width: auto;
+  width: 100%;
   border-collapse: collapse;
   table-layout: fixed; /* Ensures alignment */
 }

@@ -48,7 +48,7 @@
           {{ transaction.transactionType === 'Credit' ? 'Payment from' : 'Payment to' }}
           {{ transaction.receiverName }}
         </td>
-        <td>${{ transaction.transferAmount }} INR</td>
+        <td>{{ transaction.transferAmount }} INR</td>
         <td>
           <span>
             {{transaction.transactionType}}

@@ -13,33 +13,83 @@ import { TableModule } from 'primeng/table';
   styleUrl: './transactions.css'
 })
 export class Transactions {
-  constructor (private service: MyService){}
+  constructor(private service: MyService) {}
 
-  userPhoneNumber: any;
-  ngOnInit():void{
-    this.userPhoneNumber = sessionStorage.getItem("number");
-    this.loadTransactions();
-  }
-
+  searchQuery: string = '';
+  filteredTransactions: transactionHistory[] = [];
   transactions: transactionHistory[] = [];
 
-  deleteAll(){
-    this.service.deleteAllTransactions(this.userPhoneNumber).subscribe(data=>{
-      alert(data.response)
-      this.loadTransactions();
-    })
-  }  
+  currentPage: number = 1;
+  itemsPerPage: number = 5;
 
-  deleteByID(transactionID: number){
-    this.service.deleteTransByID(transactionID).subscribe(data=>{
+  userPhoneNumber: any;
+
+  ngOnInit(): void {
+    this.userPhoneNumber = sessionStorage.getItem("number");
+    if (this.userPhoneNumber) {
+      this.loadTransactions();
+    }
+  }
+
+  // Fetch and initialize transactions
+  loadTransactions(): void {
+    this.service.getTransaction(this.userPhoneNumber).subscribe(data => {
+      this.transactions = data.result || [];
+      this.filteredTransactions = [...this.transactions];  // Initialize filtered list
+      this.filterTransactions();  // Apply filter if any
+    });
+  }
+
+  // Handle delete all
+  deleteAll(): void {
+    this.service.deleteAllTransactions(this.userPhoneNumber).subscribe(data => {
       alert(data.response);
       this.loadTransactions();
-    })
+    });
   }
-    loadTransactions(){
-      this.service.getTransaction(this.userPhoneNumber).subscribe(data=>{
-        this.transactions = data.result;
-      })
-    }
 
+  // Filter based on search input
+  filterTransactions(): void {
+    const query = this.searchQuery.trim().toLowerCase();
+    if (!query) {
+      this.filteredTransactions = [...this.transactions];
+    } else {
+      this.filteredTransactions = this.transactions.filter(t =>
+        t.receiverName?.toLowerCase().includes(query) ||
+        t.receiverPhoneNumber?.toLowerCase().includes(query) ||
+        t.transactionType?.toLowerCase().includes(query)
+      );
+    }
+    this.currentPage = 1;
+  }
+
+  // Paginated transactions to display
+  paginatedTransactions(): transactionHistory[] {
+    const start = (this.currentPage - 1) * this.itemsPerPage;
+    const end = start + this.itemsPerPage;
+    return this.filteredTransactions.slice(start, end);
+  }
+
+  totalPages(): number {
+    return Math.ceil(this.filteredTransactions.length / this.itemsPerPage) || 1;
+  }
+
+  previousPage(): void {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+    }
+  }
+
+  nextPage(): void {
+    if (this.currentPage < this.totalPages()) {
+      this.currentPage++;
+    }
+  }
+
+  deleteByID(transactionID: number): void {
+    this.service.deleteTransByID(transactionID).subscribe(data => {
+      alert(data.response);
+      this.loadTransactions();
+    });
+  }
 }

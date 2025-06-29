@@ -1,7 +1,15 @@
-<!-- <div class="table-header d-flex justify-content-between mb-3">
-    <h5>Recent Transaction</h5>
-    <button class="btn transaction-button" (click)="deleteAll()">Delete All Transactions</button>
-  </div> -->
+<div class="table-header d-flex justify-content-between align-items-center mb-3 px-3 container">
+  <h5 class="mb-0">Recent Transactions</h5>
+  <div class="d-flex align-items-center gap-2 flex-shrink-0 flex-nowrap">
+    <input
+      type="text"
+      class="form-control search-input"
+      placeholder="Search..."
+      [(ngModel)]="searchQuery"
+      (input)="filterTransactions()" />
+    <button class="btn transaction-button" (click)="deleteAll()">Delete All</button>
+  </div>
+</div>
 
 <div class="p-4" style="height: 70%;">
   <div class="transaction-table">
@@ -16,10 +24,11 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let transaction of transactions">
+        <tr *ngFor="let transaction of paginatedTransactions()">
           <td>
-            
-            <p style="width: max-content;">{{ transaction.transactionType === 'Credit' ? 'Payment from' : 'Payment to' }} {{ transaction.receiverName }} ({{ transaction.receiverPhoneNumber }})
+            <p style="width: max-content;">
+              {{ transaction.transactionType === 'Credit' ? 'Payment from' : 'Payment to' }}
+              {{ transaction.receiverName }} ({{ transaction.receiverPhoneNumber }})
             </p>
           </td>
           <td [ngClass]="{
@@ -32,7 +41,7 @@
           <td>
             <span>{{ transaction.transactionType }}</span>
           </td>
-          <td>{{ transaction.transactionDate | date: 'MMM d, y, h, m' }}</td>
+          <td>{{ transaction.transactionDate | date: 'MMM d, y, h:mm a' }}</td>
           <td>
             <button (click)="deleteByID(transaction.transactionId)" class="delete-id-btn btn">
               <i class="fas fa-trash" style="color: white;"></i>
@@ -43,37 +52,20 @@
     </table>
   </div>
 
-
+  <!-- Pagination Controls -->
+  <div class="d-flex justify-content-end mt-3">
+    <nav>
+      <ul class="pagination mb-0">
+        <li class="page-item" [class.disabled]="currentPage === 1">
+          <button class="page-link" (click)="previousPage()">Previous</button>
+        </li>
+        <li class="page-item disabled">
+          <span class="page-link">Page {{ currentPage }} of {{ totalPages() }}</span>
+        </li>
+        <li class="page-item" [class.disabled]="currentPage === totalPages()">
+          <button class="page-link" (click)="nextPage()">Next</button>
+        </li>
+      </ul>
+    </nav>
+  </div>
 </div>
-
-
-<!-- <p-table
-    [value]="transactions"
-    [paginator]="true"
-    [rows]="5"
-    [tableStyle]="{ 'min-width': '50rem' }"
-    [rowsPerPageOptions]="[5, 10, 20]"
->
-    <ng-template #header>
-        <tr>
-          <th>Transaction</th>
-          <th>Amount</th>
-          <th>Status</th>
-          <th>Date</th>
-        </tr>
-    </ng-template>
-    <ng-template #body let-transaction>
-        <tr>
-            <td>
-            {{ transaction.transactionType === 'Credit' ? 'Payment from' : 'Payment to' }}
-            {{ transaction.receiverName }} ({{transaction.receiverPhoneNumber}})
-          </td>
-          <td>${{ transaction.transferAmount }} INR</td>
-          <td>
-            <span>{{transaction.transactionType}}</span>
-          </td>
-          <td>{{ transaction.transactionDate | date: 'MMM d, y, h, m' }}</td>
-          <td><button (click)="deleteByID(transaction.transactionId)">Delete</button></td>
-        </tr>
-    </ng-template>
-</p-table> -->

@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { MyService, transactionHistory } from '../my-service';
+import { MyService, transactionHistory, WalletResponseModel,  } from '../my-service';
 
 @Component({
   selector: 'app-dashboard-home',
@@ -19,32 +19,15 @@ userPhoneNumber: any;
   ngOnInit():void{
     this.userPhoneNumber = sessionStorage.getItem("number");
     this.balance();
-    this.updatePending();
     this.loadTransactions();
   }
 
   transactions: transactionHistory[] = [];
-  currentBalance: string = " ";
+  currentBalance: number = 0;
+  totalSpent: number = 0;
+  totalReceived: number = 0;
 
-  debitSum: number = 0;
-creditSum: number = 0;
 
-updatePending() {
-  this.creditSum = 0;
-  this.debitSum = 0;
-
-  for (let i = 0; i < this.transactions.length; i++) {
-    if (this.transactions[i].transactionType === 'Credit') {
-      this.creditSum += this.transactions[i].transferAmount;
-      console.log("credited:", this.creditSum);
-    }
-
-    if (this.transactions[i].transactionType === 'Debit') {
-      this.debitSum += this.transactions[i].transferAmount;
-      console.log("debited : ", this.debitSum);
-    }
-  }
-}
 
   loadTransactions(){
     this.service.getTransaction(this.userPhoneNumber).subscribe(data=>{
@@ -52,10 +35,15 @@ updatePending() {
     })
   }
 
-balance(){
-  this.service.checkBalance(this.userPhoneNumber).subscribe(data=>{
+balance() {
+  this.service.checkBalance(this.userPhoneNumber).subscribe((data: WalletResponseModel) => {
     this.currentBalance = data.result.amount;
+    this.totalSpent = data.result.totalSpent;
+    this.totalReceived = data.result.totalReceived;
+
+    console.log("Current Balance:", this.currentBalance);
+    console.log("Total Sent:", this.totalSpent);
+    console.log("Total Received:", this.totalReceived);
   });
-  this.updatePending();
 }
 }

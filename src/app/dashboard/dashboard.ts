@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
-import { MyService, balanceCheckModel } from '../my-service';
+import { MyService, UserInfoModel} from '../my-service';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,35 +15,29 @@ export class Dashboard {
 
   constructor(private router: Router, private service: MyService) { }
 
-   @Output() loginEvent = new EventEmitter<string>();
+  @Output() loginEvent = new EventEmitter<string>();
 
   userPhoneNumber: any;
   username: string = '';
   ngOnInit(): void {
     this.userPhoneNumber = sessionStorage.getItem("number");
-    //const phone = sessionStorage.getItem('number');
-    this.service.getUsername(this.userPhoneNumber).subscribe((res: { result: balanceCheckModel }) => {
-      this.username = res.result.username;
+    console.log("Stored phone number:", this.userPhoneNumber);
+    this.service.getUsername(this.userPhoneNumber).subscribe((res: { result: UserInfoModel }) => {
+      this.username = res.result.userName;
       this.showConsole();
 
     });
-
-    // const isLoggedIn = localStorage.getItem('isLoggedIn');
-    // if (!isLoggedIn && this.router.url === '/dashboard') {
-    //   this.router.navigate(['/login']);
-    // }
-
   }
 
-   logout(){
-     sessionStorage.removeItem('number');
-     sessionStorage.removeItem('isloggedin');
-     this.router.navigate(['/login']);
+  logout() {
+    sessionStorage.removeItem('number');
+    sessionStorage.removeItem('isloggedin');
+    this.router.navigate(['/login']);
     this.send(false);
   }
 
-  send(val:any){
-     this.loginEvent.emit(val);
+  send(val: any) {
+    this.loginEvent.emit(val);
   }
 
   showConsole() {

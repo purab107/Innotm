@@ -10,79 +10,82 @@ export class MyService {
   constructor(private http: HttpClient) { }
 
   signup(data: SignUpModel): Observable<any> {
-    return this.http.post<any>('https://skytm-api.azurewebsites.net/api/Auth/signup', data);
+    return this.http.post<any>('https://localhost:7200/api/Auth/register', data);
   }
 
   loginDetail(data: LoginModel): Observable<any> {
-    return this.http.post<any>('https://skytm-api.azurewebsites.net/api/Auth/login', data);
+    return this.http.post<any>('https://localhost:7200/api/Auth/login', data);
   }
 
   addMoney(data: addMoneyModel): Observable<any> {
-    return this.http.post<any>('https://skytm-api.azurewebsites.net/api/Wallet/add', data);
+    return this.http.post<any>('https://localhost:7200/api/Wallet/add', data);
   }
   sendMoney(data: paymentModel): Observable<any> {
-    return this.http.post<any>('https://skytm-api.azurewebsites.net//api/Transactions/pay', data);
+    return this.http.post<any>('https://localhost:7200/api/Transaction/send-money', data);
   }
 
   checkBalance(phoneNumber: string): Observable<any> {
-    return this.http.get<any>(`https://skytm-api.azurewebsites.net/api/Users/balance?phoneNumber=${phoneNumber}`);
+    return this.http.get<any>(`https://localhost:7200/api/Wallet/balance-summary?phoneNumber=${phoneNumber}`);
   }
 
   getTransaction(phoneNumber: string): Observable<TransactionResponse> {
-    return this.http.get<any>(`https://skytm-api.azurewebsites.net/api/Transactions/history?phoneNumber=${phoneNumber}`);
+    return this.http.get<any>(`https://localhost:7200/api/Transaction/transaction-history?phoneNumber=${phoneNumber}`);
   }
 
   getUserList(): Observable<any> {
-    return this.http.get<any>('https://skytm-api.azurewebsites.net/api/Users/basic-list')
+    return this.http.get<any>('https://localhost:7200/api/User/basic-list')
   }
 
-  getUsername(phoneNumber: string): Observable<{result: balanceCheckModel}>{
-    return this.http.get<{result: balanceCheckModel}>(`https://skytm-api.azurewebsites.net/api/Users/balance?phoneNumber=${phoneNumber}`);
-  }
+getUsername(phoneNumber: string): Observable<{ result: UserInfoModel }> {
+  return this.http.get<{ result: UserInfoModel }>(`https://localhost:7200/api/User/user-info?phoneNumber=${phoneNumber}`);
+}
 
   deleteAllTransactions(phoneNumber: string): Observable<any>{
-    return this.http.delete<any>(`https://skytm-api.azurewebsites.net/api/Transactions/history?phoneNumber=${phoneNumber}`)
+    return this.http.delete<any>(`https://localhost:7200/api/Transactions/history?phoneNumber=${phoneNumber}`)
   }
 
   deleteTransByID(transactionId: number):Observable<any>{
-    return this.http.delete<any>(`https://skytm-api.azurewebsites.net/api/Transactions/DeleteTransectionById?tid=${transactionId}`);
+    return this.http.delete<any>(`https://localhost:7200/api/Transaction/DeleteTransactionById?tid=${transactionId}`);
   }
 
 }
 
 
 export class SignUpModel {
-  username!: string;
-  email!: string;
-  phoneNumber!: string;
-  gender!: string;
-  password!: string;
+  Username!: string;
+  Email!: string;
+  PhoneNumber!: string;
+  Gender!: string;
+  Password!: string;
 }
 
 export class LoginModel {
-  phoneNumber!: string;
-  password!: string;
+  PhoneNumber!: string;
+  Password!: string;
 }
 
 export class addMoneyModel {
-  phoneNumber!: string;
-  amount!: number;
+  Amount!: number;                      
+  PhoneNumber!: string;
+  TransactionType!: string;
 }
 
 export class paymentModel{
-  senderPhoneNumber!: string;
-  receiverPhoneNumber!: string;
-  amount!: number;
+  SenderPhoneNumber!: string;
+  ReceiverPhoneNumber!: string;
+  Amount!: number;
 }
 
-export class balanceCheckModel {
-  username!: string;
-  email!: string;
-  phoneNumber!: string;
-  gender!: string;
-  password!: string;
+export class WalletSummaryDto {
   amount!: number;
-  createDate!: string;
+  totalSpent!: number;
+  totalReceived!: number;
+}
+
+export class WalletResponseModel {
+  result!: WalletSummaryDto;
+  response!: string;
+  responseCode!: string;
 }
 
 export interface transactionHistory {
@@ -109,3 +112,8 @@ export interface UserListResponse {
   phoneNumber: string;
 }
 
+export class UserInfoModel {
+  userName!: string;
+  Email!: string;
+  PhoneNumber!: string;
+}

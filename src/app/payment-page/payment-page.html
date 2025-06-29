@@ -1,23 +1,106 @@
-<div class="payment-container">
-  <h2>Send Money</h2>
-  <form (ngSubmit)="onSendMoney(payModel)" #paymentForm="ngForm">
-    
-    <label>Receiver Phone Number:</label>
-    <input id="phone" type="text" name="receiverPhoneNumber" [(ngModel)]="payModel.receiverPhoneNumber" class="form-input" required />
+<div class="container-fluid px-4 py-4">
+  <div class="payment-header mb-4">
+    <h2 class="fw-bold text-dark">Send Money</h2>
+    <p class="text-muted">Transfer money securely to a saved contact</p>
+  </div>
 
-    <label>Amount:</label>
-    <input id="amount" type="number" class="form-input" name="amount" [(ngModel)]="payModel.amount" required min="1" />
+  <form 
+    (ngSubmit)="paymentForm.form.valid && onSendMoney()" 
+    #paymentForm="ngForm" 
+    novalidate
+    class="d-flex flex-column gap-4"
+  >
+    <!-- Receiver Phone Number Combo Input -->
+    <div class="position-relative" style="max-width: 400px;">
+      <label for="phone" class="form-label fw-bold">Receiver Phone Number</label>
+      <input 
+        id="phone"
+        type="text" 
+        class="form-control form-control-lg"
+        placeholder="Search or enter phone number"
+        name="receiverPhoneNumber"
+        required
+        autocomplete="off"
+        [(ngModel)]="payModel.ReceiverPhoneNumber"
+        (focus)="showDropdown = true"
+        (blur)="hideDropdownWithDelay()"
+        (input)="filterUsers()"
+      />
 
-    <button type="submit">Send</button>
+      <!-- User Suggestions Dropdown -->
+      <ul 
+        class="list-group position-absolute w-100 shadow-sm z-3 mt-1"
+        *ngIf="showDropdown && filteredUsers.length"
+        style="max-height: 200px; overflow-y: auto;"
+      >
+        <li 
+          *ngFor="let user of filteredUsers" 
+          class="list-group-item list-group-item-action"
+          (mousedown)="selectUser(user.phoneNumber)"
+        >
+          {{user.username}} | {{user.phoneNumber}}
+        </li>
+      </ul>
+    </div>
+
+    <!-- Amount Field -->
+    <div style="max-width: 400px;">
+      <label for="amount" class="form-label fw-bold">Amount</label>
+      <div class="input-group input-group-lg">
+        <span class="input-group-text bg-light" style="border: 1px solid rgba(0, 0, 0, 0.486);">₹</span>
+        <input 
+          id="amount" 
+          type="number" 
+          class="form-control" 
+          name="amount" 
+          [(ngModel)]="payModel.Amount" 
+          required 
+          min="1" 
+          placeholder="0.00"
+        />
+      </div>
+    </div>
+
+     <!-- Quick Amount Buttons -->
+  <div class="mb-3 d-flex flex-wrap gap-2 mt-3">
+    <button 
+      type="button" 
+      class="btn btn-outline-primary rounded-pill px-4 py-2"
+      (click)="payModel.Amount = 100"
+    >
+      ₹100
+    </button>
+    <button 
+      type="button" 
+      class="btn btn-outline-primary rounded-pill px-4 py-2"
+      (click)="payModel.Amount = 500"
+    >
+      ₹500
+    </button>
+    <button 
+      type="button" 
+      class="btn btn-outline-primary rounded-pill px-4 py-2"
+      (click)="payModel.Amount = 1000"
+    >
+      ₹1000
+    </button>
+    <button 
+      type="button" 
+      class="btn btn-outline-primary rounded-pill px-4 py-2"
+      (click)="payModel.Amount = 2000"
+    >
+      ₹2000
+    </button>
+  </div>
+
+    <!-- Submit Button -->
+    <div>
+      <button 
+        type="submit" 
+        class="btn payment-button btn-primary btn-lg px-5"
+      >
+        Send Money
+      </button>
+    </div>
   </form>
-</div>
-
-<div>
-  <label for="users" class="select-label">Select User</label>
-  <select name="" id="users" [(ngModel)]="payModel.receiverPhoneNumber" class="custom-select">
-    <option value=" " disabled selected hidden>Select a User</option>
-    <option *ngFor="let data of userList" [value]="data.phoneNumber">
-      {{data.username}} | {{data.phoneNumber}}
-    </option>
-  </select>
 </div>

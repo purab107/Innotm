@@ -1,31 +1,36 @@
-<!-- Balance shoq Cards -->
+<!-- Balance Show Cards -->
 <div class="row p-4 g-4">
+  <!-- Account Balance Card -->
   <div class="col-md-4">
     <div class="card shadow-sm border-0 p-4 balance-card">
       <div class="d-flex justify-content-between align-items-center mb-2">
         <h6 class="text-muted mb-0">Account Balance</h6>
-        <!-- Optional Icon -->
       </div>
       <h4 class="fw-bold text-dark">₹ {{ currentBalance }}</h4>
-      <!-- <a href="#" class="text-decoration-none text-primary small">View all</a> -->
     </div>
+  </div>
 
-  </div>
+  <!-- Total Spent Card -->
   <div class="col-md-4">
-    <div class="p-3 bg-white card-box">
-      <h6>Pending</h6>
-      <h4 class="text-danger">- ₹  {{debitSum}}</h4>
-      <!-- <a href="#">View all</a> -->
+    <div class="card shadow-sm border-0 p-4 balance-card">
+      <div class="d-flex justify-content-between align-items-center mb-2">
+        <h6 class="text-muted mb-0">Total Spent</h6>
+      </div>
+      <h4 class="fw-bold text-danger">- ₹ {{ totalSpent }}</h4>
     </div>
   </div>
+
+  <!-- Total Received Card -->
   <div class="col-md-4">
-    <div class="p-3 bg-white card-box">
-      <h6>Processed (Last 30 Days)</h6>
-      <h4>INR 28,750.00</h4>
-      <!-- <a href="#">View all</a> -->
+    <div class="card shadow-sm border-0 p-4 balance-card">
+      <div class="d-flex justify-content-between align-items-center mb-2">
+        <h6 class="text-muted mb-0">Total Received</h6>
+      </div>
+      <h4 class="fw-bold text-success">₹ {{ totalReceived }}</h4>
     </div>
   </div>
 </div>
+
 
 <!-- Transaction Table Section -->
 <div class="p-4 pt-0">
@@ -33,7 +38,7 @@
     <h5>Recent Transaction</h5>
     <button class="btn transaction-button">View All Transactions</button>
   </div>
-  <table class="table bg-white card-box">
+  <table class="table bg-white card-box table-hover">
     <thead>
       <tr>
         <th>Transaction</th>

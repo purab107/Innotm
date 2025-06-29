@@ -1,34 +1,31 @@
-.add-money-container {
-  max-width: 300px;
-  margin: auto;
-  padding: 20px;
-  border-radius: 10px;
-  background: #e3f2fd;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+.add-money-header h2 {
+  font-size: 1.75rem;
 }
 
-.add-money-container label {
+.add-money-form input.form-control {
+  border-radius: 0.5rem;
+  font-size: 1.25rem;
+  border: 1px solid rgba(0, 0, 0, 0.486);
+}
+
+.add-money-form .input-group-text {
+  background-color: #f1f3f5;
+  border-radius: 0.5rem 0 0 0.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.486);
+}
+
+.add-money-form .btn-primary {
+  border-radius: 0.5rem;
+  font-weight: 500;
+  box-shadow: 0 4px 12px rgba(13, 110, 253, 0.2);
+  transition: all 0.3s ease;
+}
+
+.add-money-form .btn-primary:hover {
+  background-color: #0a58ca;
+  box-shadow: 0 6px 20px rgba(13, 110, 253, 0.25);
+}
+
+.button-con{
   display: block;
-  margin-top: 15px;
-  font-weight: bold;
-}
-
-.add-money-container input[type="number"] {
-  width: 100%;
-  padding: 8px;
-  margin-top: 5px;
-}
-
-.add-money-container button {
-  margin-top: 20px;
-  width: 100%;
-  padding: 10px;
-  background: #1976d2;
-  color: white;
-  border: none;
-  cursor: pointer;
-}
-
-.add-money-container button:hover {
-  background: #135ba1;
 }

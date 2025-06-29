@@ -1,18 +1,88 @@
-.transaction-button{
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+/* Optional: Prevent wrapping */
+.table-header .d-flex {
+  flex-wrap: nowrap;
+  gap: 0.75rem;
+  overflow-x: auto;
+}
+
+.table-header {
+  margin-top: 20px;
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+}
+
+/* Ensure consistent button height */
+.transaction-button,
+.search-input {
+  height: 36px;
+  white-space: nowrap;
+}
+
+/* Shared width for both header and table */
+.table-header{
+  max-width: 1300px; /* adjust as needed */
+  width: 100%;
+  margin: 0 auto; /* center align */
+  padding: 0 1rem; /* optional internal spacing */
+  box-sizing: border-box;
+}
+
+
+
+/* ============= */
+/* SEARCH INPUT  */
+/* ============= */
+.search-input {
+  min-width: 200px;
+  max-width: 240px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  padding: 4px 10px;
+  font-size: 13px;
+  height: 36px;
+  line-height: 1;
+  box-shadow: none;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.search-input:focus {
+  border-color: #f23131;
+  box-shadow: 0 0 0 2px rgba(242, 49, 49, 0.15);
+  outline: none;
+}
+
+/* ===================== */
+/* DELETE ALL BUTTON */
+/* ===================== */
+.transaction-button {
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1;
+  border-radius: 6px;
   border: 1px solid #d80101;
-  transition: background 0.9s;
+  background-color: #fff;
+  color: #d80101;
+  box-shadow: 0 1px 4px rgba(216, 1, 1, 0.1);
+  transition: all 0.3s ease;
+  height: 36px;
 }
 
-.transaction-button:hover{
-  color: white;
+.transaction-button:hover {
   background: linear-gradient(135deg, #d80101, #f23131);
+  color: #fff;
+  border-color: transparent;
 }
 
-.delete-id-btn{
+
+/* ===================== */
+/* DELETE ICON BUTTON */
+/* ===================== */
+.delete-id-btn {
   border: none;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  background-color: red;
+  background-color: #ff3d3d;
+  color: #fff;
+  box-shadow: 0 2px 5px rgba(255, 61, 61, 0.4);
   transition: transform 0.6s ease;
 }
 
@@ -20,52 +90,91 @@
   transform: rotateZ(360deg) scale(1.1);
 }
 
+/* ===================== */
+/* TABLE STYLING */
+/* ===================== */
 .transaction-table {
-  max-height: 550px;
+  max-height: 500px;
   overflow-y: auto;
   border-radius: 16px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-  background-color: #fff;
+  background-color: #ffffff;
 }
 
-/* Scrollable container needs to apply only to tbody */
 .transaction-table table {
   width: 100%;
   border-collapse: collapse;
-  table-layout: fixed; /* Ensures alignment */
+  table-layout: auto;
 }
 
-/* Sticky header */
 .transaction-table th {
   position: sticky;
   top: 0;
-  background-color: #ffffff;
-  z-index: 2;
+  background-color: #f8f9fa;
+  z-index: 1;
   padding: 12px 16px;
   text-align: left;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 2px solid #dee2e6;
   font-weight: 600;
+  color: #333;
 }
 
-/* Table cells */
 .transaction-table td {
   padding: 12px 16px;
-  border-bottom: 1px solid #f0f0f0;
+  border-bottom: 1px solid #f1f1f1;
   color: #444;
+  background-color: #fff;
 }
 
-/* Hover effect */
 .transaction-table tbody tr:hover {
   background-color: #f9f9f9;
 }
 
-/* Column borders */
 .transaction-table th,
 .transaction-table td {
-  border-right: 1px solid #e0e0e0;
+  border-right: 1px solid #e9ecef;
 }
 
 .transaction-table th:last-child,
 .transaction-table td:last-child {
   border-right: none;
+}
+
+/* ===================== */
+/* PAGINATION CONTROLS */
+/* ===================== */
+.pagination {
+  margin-top: 20px;
+}
+
+.pagination .page-item {
+  margin: 0 3px;
+}
+
+.pagination .page-link {
+  border-radius: 6px;
+  color: #333;
+  border: 1px solid #ddd;
+  padding: 6px 12px;
+  font-size: 14px;
+  background-color: #fff;
+  transition: all 0.3s ease;
+}
+
+.pagination .page-link:hover {
+  background-color: #f23131;
+  color: #fff;
+  border-color: #f23131;
+}
+
+.pagination .page-item.disabled .page-link {
+  color: #999;
+  pointer-events: none;
+  background-color: #f8f9fa;
+}
+
+.pagination .page-item.active .page-link {
+  background-color: #f23131;
+  color: white;
+  border-color: #f23131;
 }

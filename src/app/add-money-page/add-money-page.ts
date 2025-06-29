@@ -22,10 +22,12 @@ export class AddMoneyPage {
     this.userPhoneNumber = sessionStorage.getItem("number");
   }
 
-  onAddMoney(form: addMoneyModel) {
-    this.addMoneyModel.phoneNumber = this.userPhoneNumber;
-    this.service.addMoney(this.addMoneyModel).subscribe(data=>{
+  onAddMoney() {
+    this.addMoneyModel.PhoneNumber = this.userPhoneNumber;
+    this.addMoneyModel.TransactionType = 'Wallet'; // ✅ Important!
+
+    this.service.addMoney(this.addMoneyModel).subscribe(data => {
       alert(data.response);
-    })
+    });
   }
 }

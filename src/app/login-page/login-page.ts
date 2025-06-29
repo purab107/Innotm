@@ -29,7 +29,7 @@ export class LoginPage {
     this.Service.loginDetail(form).subscribe(data => {
       this.Data = data.result
       alert(data.response);
-      if(data.response == 'Login Successfully !!'){
+      if(data.response == 'Login successful.'){
         this.send(true);
         sessionStorage.setItem('isloggedin', "true");
         sessionStorage.setItem("number",this.Data.phoneNumber);

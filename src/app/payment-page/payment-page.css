@@ -1,57 +1,25 @@
-.payment-container {
-  max-width: 350px;
-  margin: auto;
-  padding: 20px;
-  border-radius: 10px;
-  background: #fff3e0;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+input::placeholder {
+  color: #adb5bd;
 }
 
-.payment-container label {
-  display: block;
-  margin-top: 15px;
-  font-weight: bold;
+input{
+  border: 1px solid rgba(0, 0, 0, 0.486);
 }
 
-.payment-container input[type="tel"],
-.payment-container input[type="number"] {
-  width: 100%;
-  padding: 8px;
-  margin-top: 5px;
+input:focus, select:focus {
+  box-shadow: 0 0 0 0.2rem rgba(32, 25, 135, 0.25);
+  border-color: #0a58ca;
 }
 
-.payment-container button {
-  margin-top: 20px;
-  width: 100%;
-  padding: 10px;
-  background: #ff9800;
-  color: white;
-  border: none;
-  cursor: pointer;
+.payment-button{
+  border-radius: 0.5rem;
+  font-weight: 500;
+  box-shadow: 0 4px 12px rgba(13, 110, 253, 0.2);
+  transition: all 0.3s ease;
 }
 
-.payment-container button:hover {
-  background: #fb8c00;
+.payment-button:hover {
+  background-color: #0a58ca;
+  box-shadow: 0 6px 20px rgba(13, 110, 253, 0.25);
 }
 
-.select-label{
-  font-weight: bold;
-  margin-bottom: 8px;
-  display: block;
-}
-
-.custom-select{
-  width: 100%;;
-  padding: 8px 12px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  background-color: #f9f9f9;
-  transition: border-color 0.3s;
-}
-
-.custom-select:hover{
-  outline: none;
-  border-color: blue;
-  background-color: #fff;
-}

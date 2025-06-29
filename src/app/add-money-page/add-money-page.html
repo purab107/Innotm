@@ -1,15 +1,76 @@
-<div class="add-money-container">
-  <h2>Add Money</h2>
-  <form (ngSubmit)="addMoneyForm.form.valid && onAddMoney(addMoneyModel)" #addMoneyForm="ngForm">
+<div class="container-fluid px-4 py-4">
+  <div class="add-money-header mb-4">
+    <h2 class="fw-bold text-dark">Add Money</h2>
+    <p class="text-muted">Enter the amount you'd like to add to your wallet</p>
+  </div>
 
-    <!-- <div class="mb-3">
-          <input type="text" class="form-control" placeholder="Enter phone number"
-                 name="phone" required [(ngModel)]="addMoneyModel.phoneNumber" />
-        </div> -->
-    
-    <label>Amount:</label>
-    <input type="number" name="amount" [(ngModel)]="addMoneyModel.amount" required min="1" />
+  <!-- Add Money Form -->
+  <form 
+    (ngSubmit)="addMoneyForm.form.valid && onAddMoney()"
+    #addMoneyForm="ngForm"
+    class="add-money-form d-flex flex-column align-items-start gap-3"
+    novalidate
+  >
+    <div class="form-group position-relative" style="max-width: 300px; width: 100%;">
+      <label for="amount" class="form-label visually-hidden">Amount</label>
+      <div class="input-group input-group-lg" style="max-width: 400px;">
+        <span class="input-group-text bg-light">₹</span>
+        <input 
+          type="number" 
+          class="form-control" 
+          id="amount" 
+          name="amount" 
+          [(ngModel)]="addMoneyModel.Amount" 
+          required 
+          min="1" 
+          placeholder="0.00"
+        />
+      </div>
+      <div *ngIf="addMoneyForm.submitted && addMoneyForm.form.controls['amount']?.invalid" class="text-danger mt-1 small">
+        Please enter a valid amount (minimum ₹1).
+      </div>
+    </div>
 
-    <button type="submit">Add</button>
+    <!-- Quick Amount Buttons -->
+  <div class="mb-3 d-flex flex-wrap gap-2 mt-3">
+    <button 
+      type="button" 
+      class="btn btn-outline-primary rounded-pill px-4 py-2"
+      (click)="addMoneyModel.Amount = 100"
+    >
+      ₹100
+    </button>
+    <button 
+      type="button" 
+      class="btn btn-outline-primary rounded-pill px-4 py-2"
+      (click)="addMoneyModel.Amount = 500"
+    >
+      ₹500
+    </button>
+    <button 
+      type="button" 
+      class="btn btn-outline-primary rounded-pill px-4 py-2"
+      (click)="addMoneyModel.Amount = 1000"
+    >
+      ₹1000
+    </button>
+    <button 
+      type="button" 
+      class="btn btn-outline-primary rounded-pill px-4 py-2"
+      (click)="addMoneyModel.Amount = 2000"
+    >
+      ₹2000
+    </button>
+  </div>
+
+    <button 
+      type="submit" 
+      class="btn btn-primary btn-lg px-4 mt-2 mt-md-0"
+    >
+      Add Money
+    </button>
+
+     
+
   </form>
 </div>

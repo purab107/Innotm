@@ -32,6 +32,7 @@ userPhoneNumber: any;
   loadTransactions(){
     this.service.getTransaction(this.userPhoneNumber).subscribe(data=>{
       this.transactions = data.result;
+      console.log(data.result)
     })
   }
 

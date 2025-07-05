@@ -1,4 +1,5 @@
-<div class="container-fluid px-4 py-4">
+
+<div class="container-fluid px-4 py-4" >
   <div class="payment-header mb-4">
     <h2 class="fw-bold text-dark">Send Money</h2>
     <p class="text-muted">Transfer money securely to a saved contact</p>
@@ -104,3 +105,11 @@
     </div>
   </form>
 </div>
+
+<app-custom-dialogue-component
+  *ngIf="showDialog"
+  [title]="dialogData.title"
+  [message]="dialogData.message"
+  [type]="dialogData.type"
+  (close)="showDialog = false">
+</app-custom-dialogue-component>

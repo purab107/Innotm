@@ -1,0 +1,16 @@
+<div class="dialog-overlay">
+  <div class="dialog-box" [ngClass]="type">
+    <div class="dialog-header">
+      <span class="icon">
+        <span *ngIf="type === 'success'">✅</span>
+        <span *ngIf="type === 'error'">❌</span>
+      </span>
+      <button class="close-btn" (click)="onClose()">×</button>
+    </div>
+    <div class="dialog-content">
+      <h2>{{ title }}</h2>
+      <p>{{ message }}</p>
+      <button class="confirm-btn" (click)="onClose()">Okay</button>
+    </div>
+  </div>
+</div>

@@ -3,10 +3,12 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MyService, paymentModel } from '../my-service';
 import { DashboardHome } from '../dashboard-home/dashboard-home';
+import { CustomDialogueComponent } from '../custom-dialogue-component/custom-dialogue-component';
 
 @Component({
   selector: 'app-payment-page',
-  imports: [CommonModule, FormsModule],
+  standalone: true,
+  imports: [CommonModule, FormsModule, CustomDialogueComponent], // ✅ ADD CUSTOM DIALOG
   providers: [MyService],
   templateUrl: './payment-page.html',
   styleUrl: './payment-page.css'
@@ -15,9 +17,17 @@ export class PaymentPage {
   userPhoneNumber: any;
   userList: any[] = [];
   filteredUsers: any[] = [];
-
   showDropdown: boolean = false;
+
   payModel = new paymentModel();
+
+  // ✅ Dialog State
+  showDialog: boolean = false;
+  dialogData = {
+    title: '',
+    message: '',
+    type: 'success' as 'success' | 'error'
+  };
 
   constructor(private service: MyService) {}
 
@@ -26,16 +36,31 @@ export class PaymentPage {
     this.getallUsers();
   }
 
-  // Handles form submission
+  // ✅ Handles money transfer with dialog feedback
   onSendMoney() {
     this.payModel.SenderPhoneNumber = this.userPhoneNumber;
-  this.service.sendMoney(this.payModel).subscribe(data => {
-    alert(data.response);
-    console.log(this.payModel);
-  });
+    this.service.sendMoney(this.payModel).subscribe(
+      data => {
+        this.dialogData = {
+          title: 'Payment Sent!',
+          message: data.response || 'Money transferred successfully.',
+          type: 'success'
+        };
+        this.showDialog = true;
+        console.log(this.payModel);
+      },
+      error => {
+        this.dialogData = {
+          title: 'Payment Failed',
+          message: 'Something went wrong. Please try again.',
+          type: 'error'
+        };
+        this.showDialog = true;
+      }
+    );
   }
 
-  // Fetch users from the backend
+  // 🔄 User search and dropdown
   getallUsers() {
     this.service.getUserList().subscribe(data => {
       this.userList = data.result || [];
@@ -43,7 +68,6 @@ export class PaymentPage {
     });
   }
 
-  // Filters users based on input
   filterUsers() {
     const query = this.payModel.ReceiverPhoneNumber?.toLowerCase() || '';
     this.filteredUsers = this.userList.filter(user =>
@@ -52,13 +76,11 @@ export class PaymentPage {
     );
   }
 
-  // Selects a user and closes dropdown
   selectUser(phoneNumber: string) {
     this.payModel.ReceiverPhoneNumber = phoneNumber;
     this.showDropdown = false;
   }
 
-  // Delayed hiding to support mousedown selection
   hideDropdownWithDelay() {
     setTimeout(() => {
       this.showDropdown = false;

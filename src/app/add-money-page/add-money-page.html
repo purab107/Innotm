@@ -74,3 +74,11 @@
 
   </form>
 </div>
+
+<app-custom-dialogue-component
+  *ngIf="showDialog"
+  [title]="dialogData.title"
+  [message]="dialogData.message"
+  [type]="dialogData.type"
+  (close)="showDialog = false">
+</app-custom-dialogue-component>

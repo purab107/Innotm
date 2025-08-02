@@ -1,0 +1,47 @@
+<div class="dashboard-container">
+  <div class="header">
+    <h2>Admin Dashboard</h2>
+    <button class="logout" (click)="logout()">Logout</button>
+  </div>
+
+  <div class="summary">
+    <div class="card">General Users: {{ counts.general }}</div>
+    <div class="card">Admins: {{ counts.admin }}</div>
+    <div class="card">Master Admins: {{ counts.master }}</div>
+    <div class="card">Total: {{ counts.total }}</div>
+  </div>
+
+  <div class="controls">
+    <button (click)="filterByRole('All')">All</button>
+    <button (click)="filterByRole('General')">General</button>
+    <button (click)="filterByRole('Admin')">Admin</button>
+    <button (click)="filterByRole('Master')">Master Admin</button>
+  </div>
+
+  <table class="user-table">
+    <thead>
+      <tr>
+        <th>Avatar</th>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Role</th>
+        <th>Created</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of filteredUsers">
+        <td><img [src]="user.avatarUrl" class="avatar" /></td>
+        <td>{{ user.userName }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.phoneNumber }}</td>
+        <td>
+          <span *ngIf="user.isMasterAdmin">Master Admin</span>
+          <span *ngIf="user.isAdmin && !user.isMasterAdmin">Admin</span>
+          <span *ngIf="!user.isAdmin && !user.isMasterAdmin">General</span>
+        </td>
+        <td>{{ user.createDate | date: 'mediumDate' }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,27 +1,25 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { Signup } from "./signup/signup";
-import { LoginPage } from "./login-page/login-page";
-import { AddMoneyPage } from "./add-money-page/add-money-page";
-import { PaymentPage } from "./payment-page/payment-page";
-import { Dashboard } from "./dashboard/dashboard";
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Chat } from './chat/chat';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Signup, LoginPage, AddMoneyPage, PaymentPage, Dashboard, CommonModule, FormsModule],
+  standalone: true,
+  imports: [RouterOutlet, CommonModule, FormsModule, Chat],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrls: ['./app.css']
 })
 export class App {
-  protected title = 'Innotm';
-  isloggedin = false;
-  ngOnInit(): void {
-    this.isloggedin = Boolean(sessionStorage.getItem('isloggedin'))
+  title = 'Innotm';
+
+  get isloggedin(): boolean {
+    return sessionStorage.getItem('isloggedin') === 'true';
   }
 
+  // If you no longer use manual emit via loginEvent, remove this:
   received(event: any) {
-    this.isloggedin = event;
+    // Optional: update manually if needed somewhere
   }
 }

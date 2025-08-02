@@ -48,7 +48,47 @@ getUsername(phoneNumber: string): Observable<{ result: UserInfoModel }> {
     return this.http.delete<any>(`https://localhost:7200/api/Transaction/DeleteTransactionById?tid=${transactionId}`);
   }
 
+  getTotalUsers() {
+  return this.http.get<number>('https://localhost:7200/api/User/count');
 }
+
+getTotalAdmins() {
+  return this.http.get<number>('https://localhost:7200/api/Admin/count-admins');
+}
+
+getAllUsers() {
+  return this.http.get<any>('https://localhost:7200/api/User/all');
+}
+
+deleteUser(id: number) {
+  return this.http.delete(`https://localhost:7200/api/Admin/delete-user/${id}`);
+}
+
+makeAdmin(id: number) {
+  return this.http.post(`https://localhost:7200/api/Admin/make-admin/${id}`, {});
+}
+
+removeAdmin(id: number) {
+  return this.http.post(`https://localhost:7200/api/Admin/remove-admin/${id}`, {});
+}
+
+
+}
+
+export interface User {
+  userId: number;
+  userName: string;
+  email: string;
+  phoneNumber: string;
+  gender: string;
+  password?: string;
+  amount: number;
+  createDate: string;
+  avatarUrl: string;
+  isAdmin: boolean;
+  isMasterAdmin: boolean;
+}
+
 
 
 export class SignUpModel {
@@ -62,6 +102,7 @@ export class SignUpModel {
 export class LoginModel {
   PhoneNumber!: string;
   Password!: string;
+  isAdmin! : boolean;
 }
 
 export class addMoneyModel {

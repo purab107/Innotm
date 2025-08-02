@@ -6,35 +6,38 @@ import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
+  standalone: true,
   imports: [CommonModule, FormsModule, RouterLink],
   providers: [MyService],
   templateUrl: './signup.html',
-  styleUrl: './signup.css'
+  styleUrls: ['./signup.css']
 })
 export class Signup {
 
   signUpModel = new SignUpModel();
   Data: any;
 
-  constructor(private Service: MyService, private router: Router) { }
+  constructor(private Service: MyService, private router: Router) {}
 
   onSubmit(form: SignUpModel) {
-    this.Service.signup(form).subscribe(data => {
-      this.Data = data.result
-      alert(data.response);
-      sessionStorage.setItem("number", this.Data.phoneNumber);
-      // After user signs up
-      // localStorage.setItem('isLoggedIn', 'true');
-      // this.router.navigate(['/dashboard'], { replaceUrl: true });
+    this.Service.signup(form).subscribe({
+      next: (data) => {
+        this.Data = data.result;
+        alert(data.response);
 
+        if (this.Data && this.Data.phoneNumber) {
+  sessionStorage.setItem('isloggedin', 'true');
+  sessionStorage.setItem('number', this.Data.phoneNumber);
+  this.router.navigate(['/dashboard']); // user dashboard
+} else {
+  alert("Signup response missing phone number.");
+}
+
+      },
+      error: (err) => {
+        console.error('Signup error:', err);
+        alert('Something went wrong. Please try again.');
+      }
     });
   }
-
-  // ngOnInit(): void {
-  //   const isLoggedIn = localStorage.getItem('isLoggedIn');
-  //   if (isLoggedIn && this.router.url === '/login') {
-  //     this.router.navigate(['/dashboard']);
-  //   }
-  // }
-
 }

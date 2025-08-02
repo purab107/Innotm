@@ -36,3 +36,15 @@
   color: #e0eaff;
   
 }
+
+
+.pfp-icon {
+   width: 32px;              /* Small size for navbar */
+  height: 32px;
+  border-radius: 50%;       /* Makes it circular */
+  object-fit: cover;        /* Keeps image well-cropped inside circle */
+  border: 1.5px solid #ccc; /* Optional border */
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  cursor: pointer;          /* Cursor pointer for menu interaction */
+  transition: transform 0.2s ease;
+}

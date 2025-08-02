@@ -22,6 +22,7 @@
       <div class="d-flex justify-content-between align-items-center p-3 border-bottom bg-white">
         <h5>Good morning, {{username}}</h5>
         <button  class="btn btn-outline-danger" style="height: fit-content;" (click)="logout()">Log Out</button>
+        <img [src]="'https://api.dicebear.com/6.x/initials/svg?seed=' + username" alt="" class="pfp-icon">
       </div>
 
       <router-outlet></router-outlet>
